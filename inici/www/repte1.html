@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Repte 1: Un servei vulnerable</title>
+    <style>
+        body {
+            font-family: Consolas, monospace;
+        }
+        
+        .console-line {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Benvingut al Repte 1: Un servei vulnerable</h1>
+    
+    <p>En aquest repte has de trobar una vulnerabilitat. Per poder-lo arrencar, has d'executar la següent ordre:</p>
+    
+    <pre>
+        <code>
+            <span class="console-line">docker run -p 127.0.0.1:80:80/tcp -d apache-cve-mabdon:latest</span>
+        </code>
+    </pre>
+    
+    <p>Pots comprovar la flag <a href="flag.html">aquí</a>.</p>
+</body>
+</html>

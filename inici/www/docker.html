@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configuració de Docker</title>
+    <style>
+        body {
+            font-family: Consolas, monospace;
+        }
+        
+        .sudo-line {
+            font-family: Consolas, monospace;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Configuració de Docker</h1>
+    
+    <p>Primer actualitzem els repositoris i el sistema amb les ordres:</p>
+    
+    <pre>
+        <code>
+            <span class="sudo-line">sudo apt update</span>
+            <span class="sudo-line">sudo apt dist-upgrade</span>
+        </code>
+    </pre>
+    
+    <p>Instal·lem el paquet docker.io:</p>
+    
+    <pre>
+        <code>
+            <span class="sudo-line">sudo apt install -y docker.io</span>
+        </code>
+    </pre>
+    
+    <p>Activem docker a l’arrencada del sistema i forcem a que s’iniciï ara mateix:</p>
+    
+    <pre>
+        <code>
+            <span class="sudo-line">sudo systemctl enable docker --now</span>
+        </code>
+    </pre>
+    
+    <p>A partir d’aquest moment ja tenim docker instal·lat. Per tal de que el nostre usuari pugui utilitzar docker, l’hem d’afegir al grup docker:</p>
+    
+    <pre>
+        <code>
+            <span class="sudo-line">sudo usermod -aG docker kali</span>
+        </code>
+    </pre>
+</body>
+</html>

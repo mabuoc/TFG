@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reto CTF esteganográfico</title>
+    <style>
+      body {
+        text-align: center;
+        font-family: Arial, sans-serif;
+      }
+      h1 {
+        font-size: 36px;
+        margin-top: 50px;
+      }
+      p {
+        font-size: 24px;
+        margin-top: 20px;
+      }
+      img {
+        max-width: 100%;
+        margin-top: 50px;
+      }
+      input[type="submit"] {
+        padding: 10px;
+        font-size: 18px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 50px;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-top: 20px;
+        width: 300px;
+      }
+      .success {
+        color: green;
+        font-size: 24px;
+        margin-top: 20px;
+      }
+      .error {
+        color: red;
+        font-size: 24px;
+        margin-top: 20px;
+      }
+      .result {
+        position: absolute;
+        top: 110px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reto CTF esteganográfico</h1>
+    <p>Sigue al conejo</p>
+    <img src="rabbit-hole.jpeg" alt="Conejo en un agujero">
+    <form>
+      <input type="text" name="flag" placeholder="Introduce la flag aquí">
+      <br>
+      <div class="result"></div>
+      <input type="submit" value="Comprobar">
+    </form>
+    <script>
+      const form = document.querySelector('form');
+      const result = document.querySelector('.result');
+      const correctHash = '5ad2899ee7847b086a30c4fd7acf4fe3c204ab1e55169d584a3a19c3dbba6701'; // SHA-256 hash of the correct flag
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const flag = form.elements.flag.value;
+        sha256(flag).then(hash => {
+          if (hash === correctHash) {
+            result.textContent = 'Flag encontrada';
+            result.className = 'success';
+          } else {
+            result.textContent = 'Flag incorrecta. Sigue intentando encontrar al conejo';
+            result.className = 'error';
+          }
+        });
+      });
+      function sha256(str) {
+        const buffer = new TextEncoder('utf-8').encode(str);
+        return crypto.subtle.digest('SHA-256', buffer)
+          .then(hashBuffer => {
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+            return hashHex;
+          });
+      }
+    </script>
+  </body>
+</html>

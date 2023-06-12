@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flags dels Reptes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .flag-box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        
+        .success {
+            color: green;
+        }
+        
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Flags dels Reptes</h1>
+    
+    <p>En aquesta pàgina, pots comprovar les flags dels diferents reptes.</p>
+    
+    <div class="flag-box">
+        <form>
+            <p>Introdueix la flag del repte 1:</p>
+            <input type="text" name="flag">
+            <button type="submit">Comprova</button>
+        </form>
+        <p class="result"></p>
+    </div>
+    
+    <div class="flag-box">
+        <form>
+            <p>Introdueix la flag del repte 2:</p>
+            <input type="text" name="flag">
+            <button type="submit">Comprova</button>
+        </form>
+        <p class="result"></p>
+    </div>
+    
+    <div class="flag-box">
+        <form>
+            <p>Introdueix la flag del repte 3:</p>
+            <input type="text" name="flag">
+            <button type="submit">Comprova</button>
+        </form>
+        <p class="result"></p>
+    </div>
+    
+    <div class="flag-box">
+        <form>
+            <p>Introdueix la flag del repte 4:</p>
+            <input type="text" name="flag">
+            <button type="submit">Comprova</button>
+        </form>
+        <p class="result"></p>
+    </div>
+    
+    <div class="flag-box">
+        <form>
+            <p>Introdueix la flag del repte 5:</p>
+            <input type="text" name="flag">
+            <button type="submit">Comprova</button>
+        </form>
+        <p class="result"></p>
+    </div>
+    
+    <script>
+        const form1 = document.querySelectorAll('form')[0];
+        const result1 = document.querySelectorAll('.result')[0];
+        const correctHash1 = '99e6b397f14294bc55e633b3e83e69108dec9a0b6ff6188de41ebefb166c96f2'; // SHA-256 hash of the correct flag for repte 1
+        form1.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const flag = form1.elements.flag.value;
+            sha256(flag).then(hash => {
+                if (hash === correctHash1) {
+                    result1.textContent = 'Flag trobada!';
+                    result1.className = 'success';
+                } else {
+                    result1.textContent = 'Flag incorrecta';
+                    result1.className = 'error';
+                }
+            });
+        });
+
+        const form2 = document.querySelectorAll('form')[1];
+        const result2 = document.querySelectorAll('.result')[1];
+        const correctHash2 = '3071c544bae46ac9b6fc5460451a2d03aedab57c42262a3d98f34a8506be8c78'; // SHA-256 hash of the correct flag for repte 2
+        form2.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const flag = form2.elements.flag.value;
+            sha256(flag).then(hash => {
+                if (hash === correctHash2) {
+                    result2.textContent = 'Flag trobada!';
+                    result2.className = 'success';
+                } else {
+                    result2.textContent = 'Flag incorrecta';
+                    result2.className = 'error';
+                }
+            });
+        });
+
+        const form3 = document.querySelectorAll('form')[2];
+        const result3 = document.querySelectorAll('.result')[2];
+        const correctHash3 = '5ad2899ee7847b086a30c4fd7acf4fe3c204ab1e55169d584a3a19c3dbba6701'; // SHA-256 hash of the correct flag for repte 3
+        form3.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const flag = form3.elements.flag.value;
+            sha256(flag).then(hash => {
+                if (hash === correctHash3) {
+                    result3.textContent = 'Flag trobada!';
+                    result3.className = 'success';
+                } else {
+                    result3.textContent = 'Flag incorrecta';
+                    result3.className = 'error';
+                }
+            });
+        });
+
+        const form4 = document.querySelectorAll('form')[3];
+        const result4 = document.querySelectorAll('.result')[3];
+        const correctHash4 = '2a905e2cf06f5ea4ae58c4f40b2cd52b8e6cecb94c6dd316e0be3ffaa8926412'; // SHA-256 hash of the correct flag for repte 4
+        form4.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const flag = form4.elements.flag.value;
+            sha256(flag).then(hash => {
+                if (hash === correctHash4) {
+                    result4.textContent = 'Flag trobada!';
+                    result4.className = 'success';
+                } else {
+                    result4.textContent = 'Flag incorrecta';
+                    result4.className = 'error';
+                }
+            });
+        });
+
+        const form5 = document.querySelectorAll('form')[4];
+        const result5 = document.querySelectorAll('.result')[4];
+        const correctHash5 = '5d3edd4a6e592ddb6eafbd5c04e77de7b7b4ea82e75b54a06fe6120b3a537892'; // SHA-256 hash of the correct flag for repte 5
+        form5.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const flag = form5.elements.flag.value;
+            sha256(flag).then(hash => {
+                if (hash === correctHash5) {
+                    result5.textContent = 'Flag trobada!';
+                    result5.className = 'success';
+                } else {
+                    result5.textContent = 'Flag incorrecta';
+                    result5.className = 'error';
+                }
+            });
+        });
+
+        function sha256(str) {
+            const buffer = new TextEncoder('utf-8').encode(str);
+            return crypto.subtle.digest('SHA-256', buffer)
+                .then(hashBuffer => {
+                    const hashArray = Array.from(new Uint8Array(hashBuffer));
+                    const hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+                    return hashHex;
+                });
+        }
+    </script>
+</body>
+</html>
